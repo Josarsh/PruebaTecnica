@@ -1,24 +1,28 @@
 "use client"
-import {useGetUsersQuery} from "@/redux/services/api";
+import TablaUsers from "@/MUI/TablaUsers";
+import { Box, Typography } from '@mui/material';
 function HomePage() {
-  const {data,error,isLoading,isFetching} =useGetUsersQuery(null)
-  if (isLoading||isFetching) return <p>Cargando...</p>
-  if (error) return <p>Ocurrio un error</p>
   return (
-    <div>
-      <div  className="grid grid-cols-3"> {
-        data?.map(user=>(
-          <div key={user.id}>
-            <p>{user.name}</p>
-            <p>{user.email}</p>
-            <p>{user.phone}</p>
-            <p>{user.company.name}</p>
-          </div>
-        ))
-      }
-      </div>
-      
-    </div>
+    <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      <Box
+        sx={{
+          width: 250,
+          bgcolor: 'primary.main',
+          color: 'text.secondary',
+          display: 'flex',
+          flexDirection: 'column',
+          padding: 2,
+        }}
+      >
+        <Typography variant="h1" gutterBottom sx={{ color: 'white' }}>
+          Zede del Litoral
+        </Typography>
+      </Box>
+
+      <Box sx={{ flex: 1, padding: 3, bgcolor: 'background.default' }}>
+          <TablaUsers/>
+      </Box>
+    </Box>
   )
 }
 
